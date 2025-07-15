@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Formulário dev burger</title>
+</head>
+<body>
+    <div class="container">
+            <header>
+                <h1>Burger House</h1>
+                <p class="subtitle">Os melhores hambúrgueres da cidade!</p>
+            </header>
+
+            <div class="menu-section">
+                <h2>Nosso Cardápio</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3><span class="burger-icon"></span> Burger Clássico</h3>
+                        <p>Nosso hambúrguer tradicional que conquistou o coração dos clientes.</p>
+                        <p class="ingredients">Pão brioche, hambúrguer 150g, queijo cheddar, alface, tomate, cebola, molho especial</p>
+                        <div class="price">R$ 24,90</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <h3><span class="burger-icon"></span> Burger Bacon</h3>
+                        <p>Para os amantes de bacon! Crocante e suculento.</p>
+                        <p class="ingredients">Pão brioche, hambúrguer 150g, queijo cheddar, bacon crocante, alface, tomate, molho barbecue</p>
+                        <div class="price">R$ 28,90</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <h3><span class="burger-icon"></span> Burger Picante</h3>
+                        <p>Para quem gosta de uma aventura gastronômica com muito sabor.</p>
+                        <p class="ingredients">Pão brioche, hambúrguer 150g, queijo pepper jack, jalapeños, cebola roxa, molho picante</p>
+                        <div class="price">R$ 26,90</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <h3><span class="burger-icon"></span> Burger Duplo Queijo</h3>
+                        <p>Dobrou o queijo, dobrou o sabor!</p>
+                        <p class="ingredients">Pão brioche, hambúrguer 150g, queijo cheddar, queijo suíço, alface, tomate, molho especial</p>
+                        <div class="price">R$ 29,90</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <h3><span class="burger-icon"></span> Burger Vegano</h3>
+                        <p>Delicioso hambúrguer 100% vegetal, sem abrir mão do sabor.</p>
+                        <p class="ingredients">Pão integral, hambúrguer de grão-de-bico, queijo vegano, alface, tomate, cebola, molho tahine</p>
+                        <div class="price">R$ 22,90</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <h3><span class="burger-icon"></span> Burger Supremo</h3>
+                        <p>Nosso carro-chefe! O mais pedido da casa.</p>
+                        <p class="ingredients">Pão brioche, hambúrguer 200g, queijo cheddar, bacon, ovo, alface, tomate, cebola caramelizada, molho especial</p>
+                        <div class="price">R$ 32,90</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggestion-form">
+                <h2> Sugira um Novo Sabor!</h2>
+                <p>
+                    Tem alguma ideia incrível para um novo hambúrguer? Compartilhe conosco!
+                </p>
+                
+                <form action="/sugestao" method="get">
+                    <div class="form-group">
+                        <label for="nome">Seu Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Seu Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomeLanche">Nome do Lanche:</label>
+                        <input type="text" id="nomeLanche" name="nomeLanche" required placeholder="Ex: Burger Tropical">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ingredientes">Ingredientes:</label>
+                        <textarea id="ingredientes" name="ingredientes" required placeholder="Descreva os ingredientes que você gostaria no seu hambúrguer..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" name="descricao" required placeholder="Conte-nos mais sobre sua ideia, o que a torna especial..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Sugestão</button>
+                </form>
+            </div>
+        </div>
+</body>
+</html>
