@@ -17,12 +17,15 @@ app.get("/not-found", (req, res) => {
 });
 
 // Rota raíz que envia o index.html, exibindo o cardápio da DevBurger, e um formulário para que os clientes possam sugerir um novo sabor de lanche.
-app.get("/", (req, res) => {
-  res.status(200).sendFile(__dirname + "/views/index.html");
-});
 
-app.get("/sugestao", (req, res) => {
-  const nome = req.query.nome;
+app.route("/") 
+    .get((req,res) =>{
+        res.status(200).sendFile(__dirname + "/views/index.html");
+    });
+
+app.route("/sugestao")
+    .get((req,res)=>{
+const nome = req.query.nome;
   const email = req.query.email;
   const nomeLanche = req.query.nomeLanche;
   const descricao = req.query.descricao;
@@ -111,21 +114,26 @@ app.get("/sugestao", (req, res) => {
         </body>
         </html>
     `);
-});
+    });
 
-app.get("/contato", (res, req) => {
-  req.status(200).sendFile(__dirname + "/views/contato.html");
-});
+app.route("/contato")
+    .get((req, res) =>{
+        req.status(200).sendFile(__dirname + "/views/contato.html");
+    });
+
 
 let ultimoContato = null;
 
-app.post("/contato", (req, res) => {
-  ultimoContato = req.body;
-  res.status(200).redirect("/contato-recebido");
-});
+app.route("/contato")
+    .post((req,res)=>{
+        ultimoContato = req.body;
+        res.status(200).redirect("/contato-recebido");
+    });
 
-app.get("/contato-recebido", (req, res) => {
-  if (!ultimoContato) {
+app.route("/contato-recebido")
+    .get((req,res)=>
+    {
+if (!ultimoContato) {
     return res.status(404).redirect("404.html");
   }
   const { nome, email, assunto, mensagem } = ultimoContato;
@@ -210,48 +218,20 @@ app.get("/contato-recebido", (req, res) => {
                 </html>
         
         `);
-});
+    });
 
-app.get("/api/lanches", (req, res) => {
-  const caminho = path.join(__dirname, "public", "data", "lanches.json");
-  fs.readFile(caminho, "utf-8", (err, data) => {
-    if (err) {
-      return res.status(500).json({ erro: "Erro ao ler arquivo JSON" });
-    }
-    const json = JSON.parse(data);
-    res.status(200).json(json);
-  });
-});
-
+app.route("/api/lanches")
+    .get((req, res)=>{
+        const caminho = path.join(__dirname, "public", "data", "lanches.json");
+        fs.readFile(caminho, "utf-8", (err, data) => {
+            if (err) {
+            return res.status(500).json({ erro: "Erro ao ler arquivo JSON" });
+            }
+            const json = JSON.parse(data);
+            res.status(200).json(json);
+        });
+    });
 
 app.use((req,res)=>{
     res.sendFile(path.join(__dirname, 'public', '404.html'));
 });
-
-// app.post('/contato', (req,res) => {
-//     ultimoContato = req.body; //peguei o dado do body e passei pra outra rota
-//     res.redirect('/contato-recebido'); // redirecionei pra cá..
-// });
-
-// // localhost:3000/contato-recebido?nome=Bruno&email=bruno@gmail.com -> exemplo aqui de como seria uma rota de query, se usa com dados não sensíveis...
-
-// // a rota ainda não existe por isso tenho que criar via get
-
-// app.get('/contato-recebido', (req,res)=>{
-//     if(!ultimoContato){
-//         return res.redirect('/not-found');  // se o ultimoContato for igual a nulo redireciono para not found, se não imprimo na tela os dados..
-//     }
-//     const {name, email} = ultimoContato;
-
-//     res.send(`
-//             <h1> Contato recebido, obrigado ${name}!</h1>
-//             <p><strong>Email: ${email}</strong></p>
-//         `);
-// });
-
-// //localhost:3000?nome=Bruno para fazer o post
-// app.post("/", (req, res)=>{
-//     const name = req.query.nome
-
-//     res.send(`O nome passado foi ${name}`)
-// })
